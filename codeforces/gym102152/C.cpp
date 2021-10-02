@@ -81,27 +81,17 @@ const int mod=1e9+7;
 //////////////////////////////////////////////////
 
 int _;
-int n,k,a[maxn];
+int n,m;
+
+int p5(int x) {int ans=1;re(i,1,x) ans*=5;return ans;}
+int p7(int x) {int ans=1;re(i,1,x) ans*=7;return ans;}
 
 void gao() {
-	cin>>n>>k;re(i,1,n) cin>>a[i];
-	sort(a+1,a+1+n);
-	re(i,1,n) {
-		if(a[i]>=0) break;
-		if(k==0) break;
-		k--;
-		a[i]*=-1;
-	}
-	if(k!=0&&k%2==1) {
-		re(i,1,n) assert(a[i]>=0);
-		int mn=inf,pos=-1;
-		re(i,1,n) if(a[i]<mn) {
-			mn=a[i];
-			pos=i;
-		}
-		a[pos]*=-1;
-	}
-	int ans=0;re(i,1,n) ans+=a[i];cout<<ans<<endl;
+	cin>>n>>m;
+	if(n<m) swap(n,m);
+//	cout<<__gcd(p5(n)+p7(n),p5(m)+p7(m))<<endl;
+	if(n%2==1&&m%2==1) cout<<12<<endl;
+	else cout<<2<<endl; 
 }
 
 signed main() {

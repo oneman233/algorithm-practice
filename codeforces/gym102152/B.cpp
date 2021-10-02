@@ -81,27 +81,33 @@ const int mod=1e9+7;
 //////////////////////////////////////////////////
 
 int _;
-int n,k,a[maxn];
+int n,m,q;
+V<P<int,int>> v;
+int ans[maxn];
 
 void gao() {
-	cin>>n>>k;re(i,1,n) cin>>a[i];
-	sort(a+1,a+1+n);
+	cin>>n>>m>>q;
+	v.clear();
+	re(i,1,m) ans[i]=-1;
 	re(i,1,n) {
-		if(a[i]>=0) break;
-		if(k==0) break;
-		k--;
-		a[i]*=-1;
+		int l,r;
+		cin>>l>>r;
+		v.pub({l,r});
 	}
-	if(k!=0&&k%2==1) {
-		re(i,1,n) assert(a[i]>=0);
-		int mn=inf,pos=-1;
-		re(i,1,n) if(a[i]<mn) {
-			mn=a[i];
-			pos=i;
-		}
-		a[pos]*=-1;
+	v.pub({0,0});
+	v.pub({m+1,m+1});
+	sort(all(v));
+	rre(i,v.size()-1,1)
+		if(v[i].F-v[i-1].S-1>=0)
+			mmax(ans[v[i].F-v[i-1].S-1],v[i].F-1);
+	rre(i,m-1,1)
+		ans[i]=max(ans[i],ans[i+1]);
+	re(i,1,q) {
+		int x;
+		cin>>x;
+		if(ans[x]==-1) cout<<"-1 -1"<<endl;
+		else cout<<ans[x]-x+1<<' '<<ans[x]<<endl;
 	}
-	int ans=0;re(i,1,n) ans+=a[i];cout<<ans<<endl;
 }
 
 signed main() {
@@ -110,3 +116,27 @@ signed main() {
 	while(_--) gao();
     return 0;
 }
+/*
+2
+0 5 1
+5
+1 5 3
+2 3
+1
+2
+3
+
+1
+2 5 2
+2 3
+4 5
+1
+2
+
+1
+2 5 2
+2 3
+5 5
+1
+2
+*/

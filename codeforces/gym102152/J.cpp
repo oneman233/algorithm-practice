@@ -81,27 +81,23 @@ const int mod=1e9+7;
 //////////////////////////////////////////////////
 
 int _;
-int n,k,a[maxn];
+int n,m;
+int a[1005][1005];
 
 void gao() {
-	cin>>n>>k;re(i,1,n) cin>>a[i];
-	sort(a+1,a+1+n);
-	re(i,1,n) {
-		if(a[i]>=0) break;
-		if(k==0) break;
-		k--;
-		a[i]*=-1;
+	cin>>n>>m;
+	re(i,1,n) re(j,1,m) cin>>a[i][j];
+	map<int,int> mp;
+	re(j,1,m) mp[a[1][j]]++;
+	int ans=0;
+	re(i,2,n) {
+		re(j,1,m)
+			if(mp[a[i][j]]!=0)
+				ans++,mp[a[i][j]]--;
+		mp.clear();
+		re(j,1,m) mp[a[i][j]]++;
 	}
-	if(k!=0&&k%2==1) {
-		re(i,1,n) assert(a[i]>=0);
-		int mn=inf,pos=-1;
-		re(i,1,n) if(a[i]<mn) {
-			mn=a[i];
-			pos=i;
-		}
-		a[pos]*=-1;
-	}
-	int ans=0;re(i,1,n) ans+=a[i];cout<<ans<<endl;
+	cout<<ans<<endl;
 }
 
 signed main() {
@@ -110,3 +106,12 @@ signed main() {
 	while(_--) gao();
     return 0;
 }
+/*
+2
+2 2
+1 2
+1 1
+2 3
+1 1 1
+1 2 1
+*/
