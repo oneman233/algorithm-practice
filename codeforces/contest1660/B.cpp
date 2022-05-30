@@ -105,9 +105,20 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int _,n,a[maxn];
+
+void gao() {
+	sort(a+1,a+1+n);
+	if(a[n]-2>=a[n-1]) no;
+	else yes;
+}
+
 signed main()
 {
 	FAST;
-
+	cin>>_;while(_--) {
+		cin>>n;re(i,1,n) cin>>a[i];
+		gao();
+	}
 	return 0;
 }

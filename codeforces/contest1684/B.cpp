@@ -105,9 +105,22 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int t,x[4],a,b,c;
+
 signed main()
 {
 	FAST;
-
+	cin>>t;while(t--) {
+		cin>>a>>b>>c;
+		int x,y,z;
+		if(a==max({a,b,c}))
+			x=a,y=a+c+b,z=a+c;
+		else if(b==max({a,b,c}))
+			x=a+b,y=b,z=a+b+c;
+		else
+			x=a+b+c,y=b+c,z=c;
+		assert(x%y==a&&y%z==b&&z%x==c);
+		cout<<x<<' '<<y<<' '<<z<<endl;
+	}
 	return 0;
 }

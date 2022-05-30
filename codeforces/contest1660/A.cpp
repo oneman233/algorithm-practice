@@ -105,9 +105,15 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int n,a[maxn],b[maxn];
+
 signed main()
 {
 	FAST;
-
+	cin>>n;re(i,1,n) cin>>a[i]>>b[i];
+	re(i,1,n) {
+		if(a[i]==0) cout<<1<<endl;
+		else cout<<a[i]+2*b[i]+1<<endl;
+	}
 	return 0;
 }

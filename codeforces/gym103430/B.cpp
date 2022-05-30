@@ -105,9 +105,30 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int _,n,a,b;
+int ans[1005];
+
 signed main()
 {
 	FAST;
-
+	cin>>_;while(_--) {
+		cin>>n>>a>>b;
+		int j=1;
+		if(a<=b) {
+			re(i,b+1,n) ans[j++]=i;
+			re(i,a,b) ans[j++]=i;
+			re(i,1,a-1) ans[j++]=i;
+		} else {
+			re(i,a,n) ans[j++]=i;
+			re(i,b,a-1) ans[j++]=i;
+			re(i,1,b-1) ans[j++]=i;
+		}
+		int mn=inf,mx=-inf;
+		re(i,1,n/2) mmin(mn,ans[i]);
+		re(i,n/2+1,n) mmax(mx,ans[i]);
+		if(mn==a&&mx==b)
+			re(i,1,n) cout<<ans[i]<<" \n"[i==n];
+		else cout<<-1<<endl;
+	}
 	return 0;
 }

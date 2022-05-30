@@ -105,9 +105,36 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int _,a,b,c;
+
+bool ok(int n,int m) {
+	int ae=0,y=0;
+	string s;
+	re(i,1,n) {
+		cin>>s;
+		for(auto i:s) {
+			i=tolower(i);
+			if(i=='a'||i=='e'||i=='i'||i=='o'||i=='u')
+				++ae;
+			else if(i=='y') ++y;
+		}
+	}
+	if(ae>m) return 0;
+	else if(ae+y>=m) return 1;
+	else return 0;
+}
+
 signed main()
 {
 	FAST;
-
+	cin>>_;while(_--) {
+		cin>>a>>b>>c;
+		bool tmp=1;
+		tmp&=ok(a,5);
+		tmp&=ok(b,7);
+		tmp&=ok(c,5);
+		if(tmp) yes;
+		else no;
+	}
 	return 0;
 }

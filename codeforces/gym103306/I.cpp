@@ -105,9 +105,26 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int t,n;
+int ans=0;
+
 signed main()
 {
 	FAST;
-
+	cin>>t;
+	while(t--) {
+		cin>>n;
+		ans=0;
+		while(n>9) {
+			int tmp=n,mul=1;
+			while(tmp) {
+				mul*=tmp%10;
+				tmp/=10;
+			}
+			n=mul;
+			++ans;
+		}
+		cout<<ans<<endl;
+	}
 	return 0;
 }

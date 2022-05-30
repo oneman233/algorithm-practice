@@ -105,9 +105,32 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int t, a;
+int sum[maxn];
+
 signed main()
 {
 	FAST;
-
+	re(i, 1, 1e6)
+	{
+		int j = i;
+		while (j <= 1e6)
+		{
+			sum[j] += i;
+			j += i;
+		}
+	}
+	cin >> t;
+	re(i, 1, t)
+	{
+		cin >> a;
+		// cout << sum[a] << ' ';
+		if (sum[a] - a == a)
+			cout << "perfect" << endl;
+		else if (sum[a] - a > a)
+			cout << "abundant" << endl;
+		else
+			cout << "deficient" << endl;
+	}
 	return 0;
 }

@@ -105,9 +105,27 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int _,x,y;
+
 signed main()
 {
 	FAST;
-
+	cin>>_;while(_--) {
+		cin>>x>>y;
+		if((x+y)%2==1) {
+			cout<<"-1 -1"<<endl;
+			continue;
+		}
+		bool ok=0;
+		re(i,0,(x+y)/2) {
+			int j=(x+y)/2-i;
+			if(i+j==abs(i-x)+abs(j-y)) {
+				ok=1;
+				cout<<i<<' '<<j<<endl;
+				break;
+			}
+		}
+		if(!ok) cout<<"-1 -1"<<endl;
+	}
 	return 0;
 }

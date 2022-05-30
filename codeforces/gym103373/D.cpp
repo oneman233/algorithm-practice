@@ -105,9 +105,18 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int n;
+db ans;
+
 signed main()
 {
 	FAST;
-
+	cin >> n;
+	if (n == 2)
+	{
+		cout << 1 << endl;
+		return 0;
+	}
+	cout << (db)n / (2 * n - 2) << endl;
 	return 0;
 }

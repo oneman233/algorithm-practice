@@ -105,9 +105,30 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int n,m;
+string s[1005];
+int ans[1005][1005];
+
+int di[8]={0,0,1,-1,1,-1,1,-1};
+int dj[8]={1,-1,0,0,1,1,-1,-1};
+
+bool ok(int i,int j) {
+	return i>=1&&i<=n&&j>=1&&j<=m;
+}
+
 signed main()
 {
 	FAST;
-
+	cin>>n>>m;
+	re(i,1,n) cin>>s[i],s[i]='$'+s[i];
+	for(char ch='A';ch<='Y';++ch)
+		re(i,1,n) re(j,1,m)
+			if(s[i][j]==ch)
+				fo(k,0,8)
+					if(ok(i+di[k],j+dj[k])&&s[i+di[k]][j+dj[k]]==ch+1)
+						mmax(ans[i+di[k]][j+dj[k]],ans[i][j]+1);
+	int mx=-inf;
+	re(i,1,n) re(j,1,m) mmax(mx,ans[i][j]);
+	cout<<mx+1<<endl;
 	return 0;
 }

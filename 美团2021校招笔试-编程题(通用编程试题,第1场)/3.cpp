@@ -80,25 +80,17 @@ const int mod=1e9+7;
 
 //////////////////////////////////////////////////
 
-int n,m;
-
-bool dfs(int now,char who) {
-	if(now<=m) return 1;
-	re(i,1,m)
-		if(__builtin_popcountll(now-i)%2==0&&
-		   !dfs(now-i,'A'+'B'-who))
-			return 1;
-	return 0;
-}
-
-void gao() {
-	cin>>n>>m;
-	if(dfs(n,'A')) cout<<"Pay the bill";
-	else cout<<"Free snacks!";
-}
+int n,x,y;
+int a,b;
 
 signed main() {
     FAST
-	gao();
+	cin>>n;
+	re(i,1,n) {
+		cin>>x>>y;
+		if(x<=y) a+=y;
+		else a+=x,b+=x-y;
+	}
+	cout<<a<<' '<<b;
     return 0;
 }

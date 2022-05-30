@@ -105,9 +105,53 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int _,n,m;
+
+void gao() {
+	cin>>n>>m;
+	V<V<int>> a(n,V<int>(m,0));
+	fo(i,0,n) fo(j,0,m) cin>>a[i][j];
+	int aa=1,bb=1;
+	for(int i=0;i<n;++i) {
+		V<int> b=a[i];
+		sort(all(b));
+		int cnt=0;
+		for(int j=0;j<m;++j)
+			if(a[i][j]!=b[j]) ++cnt;
+		if(cnt>2) {
+			cout<<-1<<endl;
+			return; 
+		}
+		else if(cnt==2) {
+			V<int> x;
+			for(int j=0;j<m;++j)
+				if(a[i][j]!=b[j]) x.push_back(j);
+			for(int j=0;j<n;++j)
+				swap(a[j][x[0]],a[j][x[1]]);
+			aa=x[0]+1,bb=x[1]+1;
+			break;
+		}
+	}
+	auto ok=[&]() {
+		for(int i=0;i<n;++i)
+			for(int j=1;j<m;++j)
+				if(a[i][j]<a[i][j-1])
+					return 0;
+		return 1;
+	};
+	if(ok()) cout<<aa<<' '<<bb<<endl;
+	else cout<<-1<<endl;
+}
+
 signed main()
 {
 	FAST;
-
+	cin>>_;while(_--) gao();
 	return 0;
 }
+/*
+1
+2 3
+1 2 3
+1 1 1
+*/

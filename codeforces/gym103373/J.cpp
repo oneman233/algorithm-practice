@@ -105,9 +105,35 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+string a, b;
+stringstream ss;
+int aa, bb;
+
 signed main()
 {
 	FAST;
-
+	cin >> a >> b;
+	for (auto i : a)
+	{
+		if (isalpha(i))
+		{
+			cout << "NaN" << endl;
+			return 0;
+		}
+	}
+	for (auto i : b)
+	{
+		if (isalpha(i))
+		{
+			cout << "NaN" << endl;
+			return 0;
+		}
+	}
+	ss << a;
+	ss >> aa;
+	ss.clear();
+	ss << b;
+	ss >> bb;
+	cout << aa - bb << endl;
 	return 0;
 }

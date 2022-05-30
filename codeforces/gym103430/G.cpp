@@ -105,9 +105,33 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int _,k,x;
+
 signed main()
 {
 	FAST;
-
+	cin>>_;while(_--) {
+		cin>>k>>x;
+		if(x>=(1+k)*k/2+k*(k-1)/2) {
+			cout<<2*k-1<<endl;
+		} else if(x<=(1+k)*k/2) {
+			int l=0,r=k;
+			while(l<=r) {
+				int m=(l+r)/2;
+				if(x<=(1+m)*m/2) r=m-1;
+				else l=m+1;
+			}
+			cout<<l<<endl;
+		} else {
+			x-=(1+k)*k/2;
+			int l=k-1,r=1;
+			while(l>=r) {
+				int m=(l+r)/2;
+				if(x<=(k-1+m)*(k-m)/2) r=m+1;
+				else l=m-1;
+			}
+			cout<<(k-l)+k<<endl;
+		}
+	}
 	return 0;
 }

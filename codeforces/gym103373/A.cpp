@@ -105,9 +105,44 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int n;
+struct node
+{
+	int a, b, c;
+	string name;
+};
+node a[400];
+
+bool cmp(node a, node b)
+{
+	if (a.a != b.a)
+	{
+		return a.a > b.a;
+	}
+	else
+	{
+		if (a.b != b.b)
+		{
+			return a.b > b.b;
+		}
+		else
+		{
+			return a.c > b.c;
+		}
+	}
+}
+
 signed main()
 {
 	FAST;
-
+	cin >> n;
+	re(i, 1, n)
+	{
+		cin >> a[i].a >> a[i].b >> a[i].c;
+		getline(cin, a[i].name);
+		a[i].name = a[i].name.substr(1, a[i].name.length());
+	}
+	sort(a + 1, a + 1 + n, cmp);
+	cout << a[1].name << endl;
 	return 0;
 }

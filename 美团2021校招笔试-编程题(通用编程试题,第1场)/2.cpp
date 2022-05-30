@@ -80,48 +80,19 @@ const int mod=1e9+7;
 
 //////////////////////////////////////////////////
 
-int t;
-string s;
-V<int> ans;
-
-string div(string s) {
-	string ret="";
-	int now=0;
-	for(int i=0;i<s.length();++i) {
-		now*=10;now+=s[i]-'0';
-		ret+=now/2+'0';
-		now=now%2;
-	}
-	return ret;
-}
+db a[10];
+db ans=0,sum=0;
 
 signed main() {
     FAST
-	cin>>t;
-	while(t--) {
-		cin>>s;
-		ans.clear();
-		int six=0;
-		if((s[s.length()-1]-'0')%2==0) {
-			ans.pub(2),six++;
-			string ss=div(s);
-//			cout<<ss<<endl;
-			if((ss[ss.length()-1]-'0')%2==0) ans.pub(4);
-		}
-		int sum=0;
-		for(auto i:s) sum+=i-'0';
-		if(sum%3==0) ans.pub(3),six++;
-		if(s[s.length()-1]=='0'||s[s.length()-1]=='5') ans.pub(5);
-		if(six==2) ans.pub(6);
-		if(ans.empty()) cout<<-1;
-		else {
-			sort(all(ans));
-			fo(i,0,ans.size()) {
-				cout<<ans[i];
-				if(i!=ans.size()-1) cout<<' ';
-			}
-		}
-		if(t!=0) cout<<endl;
-	}
+	re(i,1,5) cin>>a[i];
+	re(i,1,5)
+		ans+=a[i]*i,sum+=a[i];
+	ans/=sum;
+	stringstream ss;
+	string s;
+	ss<<ans;
+	ss>>s;
+	for(int i=0;i<3;++i) cout<<s[i];
     return 0;
 }

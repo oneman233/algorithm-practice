@@ -105,9 +105,24 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int _,c,r,s;
+
+void gao() {
+	int a=r%s;
+	int b=c-(s-a);
+	if(a==0) b=c;
+	cout<<(b+s-1)/s<<' ';
+	int tmp=c-r*(s-1);
+	if(tmp>0) cout<<(tmp+s-1)/s<<endl;
+	else cout<<0<<endl;
+}
+
 signed main()
 {
 	FAST;
-
+	cin>>_;while(_--) {
+		cin>>c>>r>>s;
+		gao();
+	}
 	return 0;
 }

@@ -105,9 +105,37 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int n, a[maxn];
+int tr[maxn];
+
+int lb(int x) { return x & -x; }
+
+void add(int x, int y)
+{
+	for (int i = x; i <= 1e6; i += lb(i))
+		tr[i] += y;
+}
+
+int sum(int x)
+{
+	int ret = 0;
+	for (int i = x; i > 0; i -= lb(i))
+		ret += tr[i];
+	return ret;
+}
+
 signed main()
 {
 	FAST;
-
+	cin >> n;
+	re(i, 1, n) cin >> a[i];
+	int ans = 0;
+	rre(i, n, 1)
+	{
+		ans += sum(a[i]);
+		add(a[i], 1);
+		// cout << ans << endl;
+	}
+	cout << ans;
 	return 0;
 }

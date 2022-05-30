@@ -105,9 +105,29 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int _,n;
+string s;
+
+void gao() {
+	cin>>s;
+	n=s.length();
+	int cnt=0,flg=0,mx=-inf;
+	fo(i,0,n) {
+		if(s[i]=='R') ++cnt;
+		else --cnt;
+		if(cnt>mx) {
+			mx=cnt;
+			flg=i+1;
+		}
+	}
+	if(mx<=0) cout<<0<<endl;
+	else cout<<flg<<endl;
+}
+
 signed main()
 {
 	FAST;
-
+	cin>>_;
+	while(_--) gao();
 	return 0;
 }

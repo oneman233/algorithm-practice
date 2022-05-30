@@ -80,48 +80,31 @@ const int mod=1e9+7;
 
 //////////////////////////////////////////////////
 
-int t;
-string s;
-V<int> ans;
+int n,sum=0,mx=-inf;
+vector<P<int,int> > e[maxn];
+int dis[maxn];
 
-string div(string s) {
-	string ret="";
-	int now=0;
-	for(int i=0;i<s.length();++i) {
-		now*=10;now+=s[i]-'0';
-		ret+=now/2+'0';
-		now=now%2;
-	}
-	return ret;
+void dfs(int x,int f) {
+	sum+=dis[x];
+	mmax(mx,dis[x]);
+	for(auto y:e[x])
+		if(y.F!=f) {
+			dis[y.F]=dis[x]+y.S;
+			dfs(y.F,x);
+		}
 }
 
 signed main() {
     FAST
-	cin>>t;
-	while(t--) {
-		cin>>s;
-		ans.clear();
-		int six=0;
-		if((s[s.length()-1]-'0')%2==0) {
-			ans.pub(2),six++;
-			string ss=div(s);
-//			cout<<ss<<endl;
-			if((ss[ss.length()-1]-'0')%2==0) ans.pub(4);
-		}
-		int sum=0;
-		for(auto i:s) sum+=i-'0';
-		if(sum%3==0) ans.pub(3),six++;
-		if(s[s.length()-1]=='0'||s[s.length()-1]=='5') ans.pub(5);
-		if(six==2) ans.pub(6);
-		if(ans.empty()) cout<<-1;
-		else {
-			sort(all(ans));
-			fo(i,0,ans.size()) {
-				cout<<ans[i];
-				if(i!=ans.size()-1) cout<<' ';
-			}
-		}
-		if(t!=0) cout<<endl;
+	cin>>n;
+	int tmp=0;
+	re(i,1,n-1) {
+		int x,y,z;
+		cin>>x>>y>>z;
+		e[x].pub({y,z}),e[y].pub({x,z});
+		tmp+=z;
 	}
+	dfs(1,-1);
+	cout<<sum<<' '<<2*tmp-mx;
     return 0;
 }

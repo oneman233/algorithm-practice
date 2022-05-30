@@ -105,9 +105,20 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int t;
+string n;
+
 signed main()
 {
 	FAST;
-
+	cin>>t;while(t--) {
+		cin>>n;
+		if(n.length()==2) cout<<n[1]<<endl;
+		else {
+			char c = '9';
+			for(auto i:n) mmin(c,i);
+			cout<<c<<endl;
+		}
+	}
 	return 0;
 }

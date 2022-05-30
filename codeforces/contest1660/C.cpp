@@ -99,15 +99,36 @@ P<T, T> mkp(T a, T b) { return make_pair(a, b); }
 template <typename T>
 P<T, P<T, T>> mkp(T a, T b, T c) { return make_pair(a, make_pair(b, c)); }
 
-const int maxn = 1e6 + 5;
+const int maxn = 2e5 + 5;
 const int inf = 0x3f3f3f3f3f3f3f3f;
 const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int _,n;
+string s;
+int dp[maxn];
+map<char,int> lst;
+
+void gao() {
+	mem0(dp);
+	lst.clear();
+	re(i,1,n) {
+		dp[i]=dp[i-1]+1;
+		if(lst[s[i]]!=0) mmin(dp[i],dp[lst[s[i]]-1]+i-lst[s[i]]-1);
+		lst[s[i]]=i;
+	}
+	cout<<dp[n]<<endl;
+}
+
 signed main()
 {
 	FAST;
-
+	cin>>_;while(_--) {
+		cin>>s;
+		n=s.length();
+		s='$'+s;
+		gao();
+	}
 	return 0;
 }

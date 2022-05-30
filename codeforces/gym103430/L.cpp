@@ -105,9 +105,33 @@ const int mod = 1e9 + 7;
 
 //////////////////////////////////////////////////
 
+int n,a[maxn],b[maxn];
+
+bool ok(int x) {
+	re(i,1,n) b[i]=a[i];
+	re(i,1,n-1) {
+		if(b[i]<=x) continue;
+		else if(b[i]>2*x) return 0;
+		else {
+			int q=b[i]-x;
+			int p=x-q;
+			b[i]=0;
+			b[i+1]+=2*q;
+		}
+	}
+	return b[n]<=x;
+}
+
 signed main()
 {
 	FAST;
-
+	cin>>n;re(i,1,n) cin>>a[i];
+	int l=0,r=2e5;
+	while(l<=r) {
+		int m=(l+r)/2;
+		if(ok(m)) r=m-1;
+		else l=m+1;
+	}
+	cout<<l;
 	return 0;
 }
